@@ -1,0 +1,13 @@
+name: 'Power BI Workspace Deploy'
+description: 'Deploy Thin PBIX file to target workspace'
+author: 'Nathan Giusti'
+inputs:
+  files:
+    description: 'Filed to deploy'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.files }}
+  
