@@ -6,6 +6,7 @@ import requests
 import yaml
 
 tenant_id = 'cef04b19-7776-4a94-b89b-375c77a8f936'
+separator = ','
 
 
 def main():
@@ -26,7 +27,9 @@ def main():
         'Authorization': 'Bearer {}'.format(access_token)
     }
 
-    for file in sys.argv:
+    file_list = sys.argv[1].split(separator)
+
+    for file in file_list:
         if file.endswith('.pbix') and os.path.exists(file):
             path = Path(file)
             workspace = os.path.basename(path.parent.absolute())

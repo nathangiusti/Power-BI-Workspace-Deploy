@@ -3,7 +3,7 @@ description: 'Deploy Thin PBIX file to target workspace'
 author: 'Nathan Giusti'
 inputs:
   files:
-    description: 'Filed to deploy'
+    description: 'Files to deploy'
     required: true
 runs:
   using: 'docker'
