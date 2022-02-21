@@ -5,9 +5,38 @@ inputs:
   files:
     description: 'Files to deploy'
     required: true
+  tenant_id:
+    description: 'The tenant id'
+    required: true
+  workspace_id:
+    description: 'The workspace to deploy to or a string json mapping folders to workspace ids'
+    required: true
+  pbix_name_conflict:
+    description: 'Determines what to do if a dataset with the same name already exists. Abort, CreateOrOverwrite, GenerateUniqueName, Ignore, Overwrite'
+    required: false
+    default: "CreateOrOverwrite"
+  override_model_name:
+    description: 'Determines whether to override existing label on model during republish of PBIX file, service default value is true.'
+    required: false
+    default: true
+  override_report_label:
+    description: 'Determines whether to override existing label on report during republish of PBIX file, service default value is true.'
+    required: false
+    default: true
+  max_file_size_supported_in_mb:
+    description: 'Maximum File Size Supported. Action only supports files upto 1000 MB.'
+    required: false
+    default: 110
+  rdl_max_file_size_supported_in_mb:
+    description: 'Maximum File Size Supported. Action only supports files upto 1000 MB.'
+    required: false
+    default: 110
+  rdl_name_conflict:
+    description: 'Determines what to do if a dataset with the same name already exists. Only Abort and Overwrite are supported with Rdl files.'
+    required: false
+    default: 'Overwrite'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.files }}
-  

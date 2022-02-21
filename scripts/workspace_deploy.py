@@ -34,7 +34,6 @@ def main():
             path = Path(file)
             workspace = os.path.basename(path.parent.absolute())
             file_name = os.path.basename(file)
-            display_name = file_name.replace('_', ' ')
             workspace_id = cfg[workspace]['test_workspace_id']
             print('Deploying {} to {}'.format(file_name, workspace))
             file_import = {'file': open(file, 'rb')}
