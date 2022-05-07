@@ -4,11 +4,11 @@ Deploys PBIX files to a workspace.
 
 # Set Up
 
-Add an environment variable to your instance for your service principle's id and secret key. 
+Add an environment variable to your GitHub repo for your service principle's id and secret key. 
 Pass these credentials to the action as seen in the usage example below
 
 Create a yaml config file and place it in your repo.
-The config file will map folder names to workspace ids. This allows a GitHub repo to deploy to multiple workspaces. 
+The config file will map folder names to workspace ids. This allows the action to deploy to multiple workspaces from a single repository. 
 
 Example:
 
