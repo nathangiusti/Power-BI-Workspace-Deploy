@@ -5,12 +5,14 @@ from pathlib import Path
 import requests
 import yaml
 
-tenant_id = 'cef04b19-7776-4a94-b89b-375c77a8f936'
-separator = ','
-
 
 def main():
-    with open('.github/config/deploy_config.yaml', 'r') as yml_file:
+
+    config_path = sys.argv[2]
+    separator = sys.argv[3]
+    tenant_id = sys.argv[4]
+
+    with open(config_path, 'r') as yml_file:
         cfg = yaml.safe_load(yml_file)
 
     data = {
@@ -35,7 +37,7 @@ def main():
             workspace = os.path.basename(path.parent.absolute())
             file_name = os.path.basename(file)
             display_name = file_name.replace('_', ' ')
-            workspace_id = cfg[workspace]['test_workspace_id']
+            workspace_id = cfg[workspace]['workspace_id']
             print('Deploying {} to {}'.format(file_name, workspace))
             file_import = {'file': open(file, 'rb')}
             response = requests.request("POST",
@@ -44,7 +46,7 @@ def main():
                                         .format(workspace_id, display_name), files=file_import, headers=token)
 
             if response.status_code not in [200, 201, 202, 204]:
-                raise Exception('ERROR: {}: {}\nURL: {}'.format(response.status_code, response.content, response.url))
+                raise Exception(f"ERROR: {response.status_code}: {response.content}\nURL: {response.url}")
 
 
 if __name__ == '__main__':

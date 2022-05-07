@@ -2,12 +2,24 @@ name: 'Power BI Workspace Deploy'
 description: 'Deploy Thin PBIX file to target workspace'
 author: 'Nathan Giusti'
 inputs:
+  config_file:
+    description: 'Location of config file'
+    required: true
+  tenant_id:
+    description: 'Tenant ID of your Power BI instance'
+    required: true
   files:
     description: 'Files to deploy'
     required: true
+  separator:
+    description: 'Character used to separate file names in files argument'
+    required: false
+    default: ","
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.files }}
-  
+    - ${{ inputs.config_file }}
+    - ${{ inputs.separator }}
+    - ${{ inputs.tenant_id }}
