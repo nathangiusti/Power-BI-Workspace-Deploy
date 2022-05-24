@@ -21,7 +21,6 @@ Workspace_name2:
 
 A PBIX file placed in a folder called Workspace_name1 will be deployed to the workspace id listed in the config file. 
 
-
 The folder does not need to be at root. 
 
 /foo/bar/Workspsace_name1/myfile.pbix will deploy myfile.pbix to the workspace listed in the config file for Workspace_name1
@@ -45,11 +44,11 @@ jobs:
         with:
           separator: ","
       - name: Power BI Workspace Deploy
-        uses: nathangiusti/Power-BI-Workspace-Deploy@v1.1
+        uses: ab-inbev-labs/powerbi-actions/pbix-workspace-deploy@v1.0
         with:
           files: ${{ steps.changed-files.outputs.all_modified_files }}
           separator: ","
-          tenant_id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+          tenant_id: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
           config_file: ".github/config/workspace-deploy-config.yaml"
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
@@ -61,4 +60,4 @@ jobs:
 | files | `string` | `true` | | List of files to process. Will only deploy files with .pbix ending. The rest will be ignored. |
 | separator | `string` | `false` | `","` | Character which separates file names. |
 | tenant_id | `string` | `true` | | Your tenant id. |
-| config_file | `string` | `true` | | The location of your config file
+| config_file | `string` | `true` | | The location of your config file |
