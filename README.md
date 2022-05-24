@@ -40,11 +40,12 @@ jobs:
           fetch-depth: 0
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v12
+        uses: tj-actions/changed-files@v19
         with:
           separator: ","
+          quotepath: false
       - name: Power BI Workspace Deploy
-        uses: ab-inbev-labs/powerbi-actions/pbix-workspace-deploy@v1.0
+        uses: nathangiusti/Power-BI-Workspace-Deploy@v1.2
         with:
           files: ${{ steps.changed-files.outputs.all_modified_files }}
           separator: ","
