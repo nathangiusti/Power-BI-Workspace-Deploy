@@ -1,6 +1,7 @@
 import os
 import sys
 from pathlib import Path
+import urllib.parse
 
 import requests
 import yaml
@@ -41,9 +42,11 @@ def main():
             print('Deploying {} to {}'.format(file_name, workspace))
             file_import = {'file': open(file, 'rb')}
             response = requests.request("POST",
-                                        "https://api.powerbi.com/v1.0/myorg/groups/{}/imports?"
-                                        "datasetDisplayName={}&nameConflict=CreateOrOverwrite"
-                                        .format(workspace_id, display_name), files=file_import, headers=token)
+                                        (
+                                            f"https://api.powerbi.com/v1.0/myorg/groups/{workspace_id}/imports?"
+                                            f"datasetDisplayName={urllib.parse.quote(display_name)}"
+                                            f"&nameConflict=CreateOrOverwrite"
+                                        ), files=file_import, headers=token)
 
             if response.status_code not in [200, 201, 202, 204]:
                 raise Exception(f"ERROR: {response.status_code}: {response.content}\nURL: {response.url}")
