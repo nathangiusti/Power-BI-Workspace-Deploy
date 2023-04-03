@@ -22,5 +22,5 @@ runs:
     - ${{ inputs.files }}
     - config_file: ".github/config/workspace-deploy-config.yaml"
     - ${{ inputs.separator }}
-    - tenant_id: ${{ secrets.CLIENT_SECRET }}
+    - tenant_id: ${{ secrets.TENANT_ID }}
     
