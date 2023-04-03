@@ -1,6 +1,7 @@
 
 name: Deploy to workspace
-on: [pull_request]
+on:
+  workflow_dispatch
 jobs:
   Deploy-Asset:
     runs-on: ubuntu-latest
