@@ -20,6 +20,7 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.files }}
-    - ${{ inputs.config_file }}
+    - config_file: ".github/config/workspace-deploy-config.yaml"
     - ${{ inputs.separator }}
-    - ${{ inputs.tenant_id }}
+    - tenant_id: ${{ secrets.TENANT_ID }}
+    
